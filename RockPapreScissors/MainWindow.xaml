@@ -1,0 +1,149 @@
+﻿<Window x:Class="RockPaperScissors.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RockPaperScissors"
+        mc:Ignorable="d"
+        Icon="Images/icon.png"
+        Title="Rock Paper Scissors" Height="700" Width="800">
+    <Grid>
+
+        <!-- Game Screen -->
+
+        <Border Margin="10px">
+            <StackPanel x:Name="ContentPanel" Visibility="Collapsed">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="1">
+                        
+                        <!-- Title -->
+                        
+                        <TextBlock Text="Rock Paper Scissors Game!" Foreground="DarkBlue" HorizontalAlignment="Center" FontSize="30px" />
+
+                        <!-- Chose -->
+
+                        <TextBlock Text="Chose" Foreground="DarkBlue" HorizontalAlignment="Center" FontSize="20px" Margin="0 20 0 20" />
+
+                        <!-- Images -->
+
+                        <StackPanel Orientation="Horizontal">
+                            
+                            <Border x:Name="ImageBorder1">
+                                
+                                <Image x:Name="Image1" Source="Images/paper.jpg" Width="150px" Margin="0 0 10 0" MouseDown="Image_MouseDown" Cursor="Hand" />
+                                
+                            </Border>
+                            
+                            <Border x:Name="ImageBorder2">
+                                
+                                <Image x:Name="Image2" Source="Images/rock.jpg" Width="150px" Margin="0 0 10 0" MouseDown="Image_MouseDown" Cursor="Hand" />
+                                
+                            </Border>
+                            <Border x:Name="ImageBorder3">
+                                
+                                <Image x:Name="Image3" Source="Images/scissors.jpg" Width="150px" MouseDown="Image_MouseDown" Cursor="Hand" />
+                                
+                            </Border>
+                            
+                        </StackPanel>
+
+                        <!-- ChosedTextBlock -->
+
+                        <TextBlock x:Name="ChosedTextBlock" Text="" HorizontalAlignment="Center" Foreground="DarkBlue" FontSize="20px" Margin="0 0 0 10" />
+
+                        <!-- Begin Button -->
+
+                        <Button x:Name="BeginButton" Content="Begin" Click="BeginButton_Click" Foreground="White" FontSize="20px" Visibility="Hidden" >
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="Black"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" CornerRadius="5" Background="DarkBlue" Padding="0 10 0 10" Cursor="Hand">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="Blue" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <!-- Computer Item Image -->
+
+                        <Image x:Name="ResultImage" Source="Images/paper.jpg" Width="150px" Margin="0 30 0 0" MouseDown="Image_MouseDown"  Visibility="Hidden"/>
+
+                        <!-- Game result -->
+
+                        <TextBlock x:Name="Result" Text="" HorizontalAlignment="Center" Foreground="DarkBlue" FontSize="20px" />
+
+                        <!-- Restart Button -->
+
+                        <Button x:Name="RestartButton" Content="Restart" Click="RestartButton_Click" Foreground="White" FontSize="20px" Visibility="Hidden" Margin="0 15 0 0">
+                            <Button.Effect>
+                                <DropShadowEffect ShadowDepth="5" Color="Black"/>
+                            </Button.Effect>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="border" CornerRadius="5" Background="#001a33" Padding="0 10 0 10" Cursor="Hand">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#003366" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                    </StackPanel>
+    
+
+                </Grid>
+            </StackPanel>
+        </Border>
+        
+        <!-- Start Screen -->
+
+        <Border x:Name="Overlay" Background="#454444" Opacity="0.5" Visibility="Visible">
+            
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <!-- Welcome Text -->
+                
+                <TextBlock Text="Welcome to Rock, Paper, Scissors" FontSize="24" Margin="0 0 0 10" Foreground="White" />
+
+                <!-- Start button -->
+
+                <Button  Content="Start" Click="StartButton_Click" Foreground="White" FontSize="20px">
+                    <Button.Effect>
+                        <DropShadowEffect ShadowDepth="5" Color="Black"/>
+                    </Button.Effect>
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border" CornerRadius="5" Background="DarkBlue" Padding="0 10 0 10" Cursor="Hand">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Blue" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
