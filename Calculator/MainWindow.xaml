@@ -1,0 +1,646 @@
+﻿<Window x:Class="Calulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Height="650" Width="400"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ResizeMode="CanResizeWithGrip"
+        MinHeight="650"
+        MinWidth="400">
+    
+    <Border CornerRadius="30" Background="#36393F">
+        
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Window Frame -->
+            
+                <Border Grid.ColumnSpan="2"
+                    Background="#252525"
+                    MouseDown="Border_MouseDown"
+                    CornerRadius="5">
+
+                    <Grid HorizontalAlignment="Stretch">
+
+                        <Label
+                           Foreground="LightGray"
+                           FontWeight="SemiBold">
+                            <Image Source="Images/calculator.png" />
+                        </Label>
+                        <Label Content="Calculator"
+                           Foreground="LightGray"
+                           FontWeight="SemiBold" 
+                           Margin="20 0 0 0"/>
+                        <StackPanel HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+                        <Button Width="20" Height="20"
+                                Content="_"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="LightGray"
+                                FontWeight="ExtraBold"
+                                Margin="0 0 0 3"
+                                Click="ButtonMinimize_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+
+                        <Button Width="20" Height="20"
+                                Content="🞐"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="LightGray"
+                                FontWeight="ExtraBold"
+                                Click="WindowStateButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <Button x:Name="CloseButton" Width="20" Height="20"
+                                Content="🗙"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="LightGray"
+                                FontWeight="Bold"
+                                Click="CloseButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                            
+                        </Button>
+
+
+                    </StackPanel>
+                    </Grid>
+            </Border>
+            
+            <!-- Calculator rest -->
+            
+                <StackPanel Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                    
+                    <!-- Name Calculator -->
+                   
+                    <StackPanel HorizontalAlignment="Left"  Orientation="Horizontal" Margin="5 10 0 0" >
+                        <TextBlock Foreground="White" FontSize="18px" Margin="0 0 5 0" >Standard Calculator</TextBlock>
+                        <TextBlock Foreground="White" FontSize="10px"> By Dawid Cisek </TextBlock>
+                    </StackPanel>
+                    
+                    <!-- Values -->
+                    
+                    <StackPanel HorizontalAlignment="Right" Margin="0 0 10 0">
+                        
+                        <!-- Second Value -->
+
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock x:Name="SecondItem" Foreground="LightGray" FontSize="14px" Text="-" >
+                                <TextBlock.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Copy" Click="SecondItem_Click"/>
+                                    </ContextMenu>
+                                </TextBlock.ContextMenu>
+                            </TextBlock>
+
+                        <TextBlock x:Name="OperationItem" Foreground="LightGray" FontSize="14px" Text="" />
+
+                        </StackPanel>
+
+                        <Separator Background="FloralWhite"/>
+                        
+                        <!-- Main Value -->
+                        
+                        <TextBlock x:Name="MainItem" Foreground="LightGray" FontSize="20px" Text="0" >
+                            <TextBlock.ContextMenu>
+                                <ContextMenu>
+                                <MenuItem Header="Copy" Click="MainItem_Click"/>
+                                </ContextMenu>
+                            </TextBlock.ContextMenu>
+                        </TextBlock>
+                        
+                    </StackPanel>
+                    
+                    <!-- Buttons -->
+
+                <Border Margin="10 20 10 10">
+                    
+                    <Grid Height="500">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Button % -->
+                        
+                        <Button Grid.Row="0" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="%" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="PercentButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button CE -->
+
+                        <Button Grid.Row="0" Grid.Column="1" 
+                                FontSize="30px"
+                                Content="CE" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="ClearMainValueButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button C -->
+
+                        <Button Grid.Row="0" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="C" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="ClearAllButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button ⌫ -->
+
+                        <Button Grid.Row="0" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="⌫" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="DeleteButton_Click" >
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 1/x -->
+
+                        <Button Grid.Row="1" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="1/x" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="InverseValueButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button x² -->
+
+                        <Button Grid.Row="1" Grid.Column="1" 
+                                FontSize="30px"
+                                Content=" x²" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="PowerTwoButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button √x -->
+
+                        <Button Grid.Row="1" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="√x" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button √x -->
+
+                        <Button Grid.Row="1" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="√x" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="SquareRootButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button ÷ -->
+
+                        <Button Grid.Row="1" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="÷" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="DivisionButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 7 -->
+
+                        <Button Grid.Row="2" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="7" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 8 -->
+
+                        <Button Grid.Row="2" Grid.Column="1" 
+                                FontSize="30px"
+                                Content="8" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 9 -->
+
+                        <Button Grid.Row="2" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="9" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button × -->
+
+                        <Button Grid.Row="2" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="×" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="MultiplicationButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 4 -->
+
+                        <Button Grid.Row="3" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="4" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 5 -->
+
+                        <Button Grid.Row="3" Grid.Column="1" 
+                                FontSize="30px"
+                                Content="5" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 6 -->
+
+                        <Button Grid.Row="3" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="6" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button - -->
+
+                        <Button Grid.Row="3" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="-" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="SubtractionButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 1 -->
+
+                        <Button Grid.Row="4" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="1" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 2 -->
+
+                        <Button Grid.Row="4" Grid.Column="1" 
+                                FontSize="30px"
+                                Content="2" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 3 -->
+
+                        <Button Grid.Row="4" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="3" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button + -->
+
+                        <Button Grid.Row="4" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="+" 
+                                Background="LightGray"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="AdditonButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button ± -->
+
+                        <Button Grid.Row="5" Grid.Column="0" 
+                                FontSize="30px"
+                                Content="±" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NegativeOrPositiveButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button 0 -->
+
+                        <Button Grid.Row="5" Grid.Column="1" 
+                                FontSize="30px"
+                                Content="0" 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="NumberButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button , -->
+
+                        <Button Grid.Row="5" Grid.Column="2" 
+                                FontSize="30px"
+                                Content="," 
+                                Background="#e1e1e1"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="AddComaButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+                        <!-- Button = -->
+
+                        <Button Grid.Row="5" Grid.Column="3" 
+                                FontSize="30px"
+                                Content="=" 
+                                Background="CornflowerBlue"
+                                BorderThickness="0"
+                                Foreground="#252525"
+                                FontWeight="ExtraBold"
+                                Cursor="Hand"
+                                Margin="2"
+                                Click="EqualButton_Click">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="25"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+
+
+                    </Grid>
+                </Border>
+                    
+                </StackPanel>
+            
+        </Grid>
+    </Border>
+</Window>
