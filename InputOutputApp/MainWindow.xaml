@@ -1,0 +1,145 @@
+﻿<Window x:Class="InputOutputApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InputOutputApp"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        
+        Title="CarPicker" Height="600" Width="400">
+
+    <Border x:Name="MainBorder" Background="AliceBlue" Padding="10" >
+        <StackPanel>
+            <!-- Buttons -->
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <Button Content="Apply" Margin="0 0 10 0" Grid.Column="0" Click="ApplyButton_Click" />
+                <Button x:Name="ResetButton" Content="Reset" Margin="0 0 10 0" Grid.Column="1" Click="ResetButton_Click"/>
+                <Button x:Name="ChangeColorButton" Content="ChangeColor" Margin="0 0 10 0" Grid.Column="2" Click="ChangeColorButton_Click"/>
+                
+            </Grid>
+            <!-- Car Brand ComboBox-->
+            <TextBlock Text="Car Brand" FontWeight="Bold" Margin="0 10 0 0"/>
+            
+            <ComboBox x:Name="BrandComboBox" SelectedIndex="0" Padding="2" Margin="0 2 0 0" >
+                
+                <ComboBoxItem>Tesla</ComboBoxItem>
+                <ComboBoxItem>BMW</ComboBoxItem>
+                <ComboBoxItem>Ferrari</ComboBoxItem>
+                <ComboBoxItem>Ford</ComboBoxItem>
+                <ComboBoxItem>Porsche</ComboBoxItem>
+                <ComboBoxItem>Honda</ComboBoxItem>
+                <ComboBoxItem>Lamborghini</ComboBoxItem>
+                <ComboBoxItem>Toyouta</ComboBoxItem>
+                <ComboBoxItem>Bentley</ComboBoxItem>
+                <ComboBoxItem>Maserati</ComboBoxItem>
+                <ComboBoxItem>Audi</ComboBoxItem>
+                <ComboBoxItem>Jeep</ComboBoxItem>
+                <ComboBoxItem>Subaru</ComboBoxItem>
+                <ComboBoxItem>Volkswagen</ComboBoxItem>
+                <ComboBoxItem>Cadillac</ComboBoxItem>
+                <ComboBoxItem>Chrysler</ComboBoxItem>
+                <ComboBoxItem>Chevrolet Corvette</ComboBoxItem>
+                <ComboBoxItem>Dodge</ComboBoxItem>
+                <ComboBoxItem>Hyunda</ComboBoxItem>
+                <ComboBoxItem>Jaguar</ComboBoxItem>
+                <ComboBoxItem>Mazda</ComboBoxItem>
+                <ComboBoxItem>Nissan</ComboBoxItem>
+                <ComboBoxItem>McLaren</ComboBoxItem>
+
+            </ComboBox>
+
+            <!-- Customization-->
+            
+                <TextBlock Text="Customization" FontWeight="Bold" Margin=" 0 10 0 0"/> 
+
+                <!-- Car Color Picker and show value -->
+                <Grid Margin="0 2 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Picking Color -->
+                    <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                        <TextBlock Text="Pick color (for example #eee)" /> 
+                        <TextBox x:Name="PickColor" Padding="2" TextChanged="TextBox_TextChanged"  />
+                    </StackPanel>
+
+                    <!-- Showing color  -->
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Text="Showing color" />
+                        <TextBox x:Name="ShowingColor" IsReadOnly="True" Background="#eee" Padding="2" Cursor="No"/>
+                    </StackPanel>
+                </Grid>
+            
+                <!-- Accessories -->
+                <TextBlock Text="Accessories" Margin="0 5 0 0"/>
+                <Grid Margin="0 4 0 0">
+                      <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="*" />
+                          <ColumnDefinition Width="*" />
+                      </Grid.ColumnDefinitions>
+
+                      <!--Coulumn 1 -->
+                      <StackPanel Grid.Column="0" Margin="0 0 10 0">
+                          <CheckBox x:Name="GPSCheckbox" Content="GPS Navigation system" />
+                          <CheckBox x:Name="CameraCheckbox" Content="Rear-view camera" />
+                          <CheckBox x:Name="SeatsCheckbox"  Content="Heated and cooled seats" />
+                          <CheckBox x:Name="SoundCheckbox"  Content="Premium sound system" />
+                          <CheckBox x:Name="EngineCheckbox"  Content="Remote engine start" />
+                      </StackPanel>
+
+                      <!--Column 2 -->
+                      <StackPanel Grid.Column="1">
+                          <CheckBox x:Name="ChargerCheckbox"  Content="Wireless phone charger" />
+                          <CheckBox x:Name="SuspensionCheckbox"  Content="Adaptive suspension" />
+                          <CheckBox x:Name="LightsCheckbox"  Content="Front fog lights" />
+                          <CheckBox x:Name="MirrosCheckbox"  Content="Auto-dimming mirrors." />
+                          <CheckBox x:Name="CruiseControlCheckbox"  Content="Adaptive cruise control" />
+                      </StackPanel>
+                 </Grid>
+            
+            <!-- Shipping information -->            
+                <TextBlock Text="Shipping information" FontWeight="Bold" Margin=" 0 10 0 0"/>
+                
+                <!-- Country -->
+                
+                <TextBlock Text="Country" Margin="0 2 0 0"   />
+                <TextBox x:Name="CountryTextBox" Padding="2" Width="100" HorizontalAlignment="Left" />
+
+                <!-- Adress -->
+
+                <TextBlock Text="Adress" Margin="0 2 0 0"   />
+                <TextBox x:Name="AdressTextBox" Padding="2" Width="100" HorizontalAlignment="Left" />
+
+                <!-- Postal code -->
+
+                <TextBlock Text="Postal code" Margin="0 2 0 0"   />
+                <TextBox x:Name="PostalCodeTextBox"  Padding="2" Width="100" HorizontalAlignment="Left" />
+
+            <!-- Additonal Info -->
+            
+            <TextBlock Text="Additonal Info" FontWeight="Bold" Margin="0 10"/>
+
+                <!-- Note -->
+                <TextBlock Text="Note" />
+                <TextBox x:Name="NoteText" Padding="2" MaxLength="50" Margin="0 2 0 0"/>
+                
+                <!-- Preview -->
+                <TextBlock  Text="Preview" />
+                <TextBlock Text="{Binding Path=Text, ElementName=NoteText}" Margin="0 2 0 0" />
+            
+            <!-- Author -->
+            
+            <TextBlock Text="Author: Dawid Cisek" HorizontalAlignment="Right" Margin="0 35 5 0"/>
+        </StackPanel>
+    </Border>
+</Window>
