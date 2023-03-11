@@ -1,0 +1,96 @@
+﻿<Window x:Class="Zadanie2doszkoly.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Zadanie2doszkoly"
+        mc:Ignorable="d"
+        Title="Dom bukmacherski" Height="400" Width="1000"
+        Background="Gray"
+        ResizeMode="NoResize"
+        FontSize="20px">
+    
+    <Grid x:Name="MainView">
+        
+        <GroupBox Header="Dom bukmacherski" Margin="10">
+            
+            <Grid>
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!-- Column 1 -->
+                
+                <StackPanel  Grid.Column="0" Margin="5">
+                    
+                    <TextBlock FontWeight="Bold">Minimalny zakład 5 zł</TextBlock>
+                    
+                    <RadioButton x:Name="pieniadzJanka"  Content="Janek ma 200zł" Margin="5" IsChecked="True" Click="RadioButton_Click"/>
+                    
+                    <RadioButton x:Name="pieniadzBartka" Content="Bartek ma 200zł" Margin="5" Click="RadioButton_Click_1"/>
+                    
+                    <RadioButton x:Name="pieniadzArka"  Content="Arek ma 200zł" Margin="5" Click="RadioButton_Click_2"/>
+                    
+                </StackPanel>
+
+                <!-- Column 2 -->
+
+                <StackPanel  Grid.Column="1" Margin="5">
+                    
+                    <TextBlock FontWeight="Bold">Zakłady</TextBlock>
+
+                    <TextBlock x:Name="Janek" Margin="0 10 0 5" >Janek nie zawarał zakładu</TextBlock>
+                    
+                    <TextBlock x:Name="Bartek" Margin="0 0 0 5" >Bartek nie zawarał zakładu</TextBlock>
+                    
+                    <TextBlock x:Name="Arek" Margin="0 0 0 5" >Arek nie zawarał zakładu</TextBlock>
+                    
+                </StackPanel>
+                
+                <!-- Bukmacher obstawianie -->
+                
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    
+                    <TextBlock Grid.Column="0" Margin="0 0 5 0" x:Name="Gracz" >Janek</TextBlock>
+                    
+                    <Button x:Name="obstaw" Width="80px" Height="25px"  Grid.Column="1" FontSize="15" Margin="5 0 5 0 " Click="obstaw_Click">Stawia</Button>
+
+                    <TextBox Name="textBox1" Width="70" Margin="0 0 5 0" TextChanged="textBox1_TextChanged">0</TextBox>
+                    <Button Name="increaseButton" Content=" + " Click="increaseButton_Click" Margin="0 0 5 0" />
+                    <Button Name="decreaseButton" Content=" - " Click="DecreaseButton_Click" Margin="0 0 5 0" />
+                    
+                    <TextBlock Grid.Column="0" Margin="0 0 5 0" >zł na charta numer</TextBlock>
+                    
+                    <TextBox Name="textBox2" Width="70" TextChanged="textBox2_TextChanged" Margin="0 0 5 0" >1</TextBox>
+                    <Button Name="increaseButton2" Content=" + " Click="increaseButton_Click_1" Margin="0 0 5 0" />
+                    <Button Name="decreaseButton2" Content=" - " Click="decreaseButton_Click_1" />
+
+                </StackPanel>
+                
+                <!-- Button -->
+                
+                <StackPanel  Grid.Column="2" Grid.RowSpan="3">
+                    
+                    <Border BorderThickness="12" BorderBrush="Black" Cursor="Hand" >
+                        
+                        <Button Height="280" Width="300px" 
+                        HorizontalContentAlignment="Center" 
+                        VerticalContentAlignment="Center" Click="MainButton_Click">Start!</Button>
+                        
+                    </Border>
+
+                </StackPanel>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>
